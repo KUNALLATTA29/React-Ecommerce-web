@@ -11,6 +11,7 @@ import Cart from './component/Cart.jsx'
 import { AuthProvider } from './component/AuthContext.jsx'
 import { Navigate } from 'react-router-dom'
 import { useAuth } from './component/AuthContext.jsx'
+import SignUp from './component/SignUp.jsx'
 
 const ProtectedRoute = ({ children }) => {
   const { isLoggedIn } = useAuth();
@@ -38,6 +39,10 @@ const router = createBrowserRouter([
     {
       path: '*',
       element: <Notfound />
+    },
+    {
+      path:'/signup',
+      element:<SignUp/>
     },
     {
       path: 'login',

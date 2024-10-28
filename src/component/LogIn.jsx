@@ -1,20 +1,25 @@
 import { useState } from "react";
 import './login.css';
 import { useAuth } from "./AuthContext";
+import { Link,useNavigate } from "react-router-dom";
 
 const UserForm = () => {
     const {login} = useAuth()
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    const navigate = useNavigate();
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        const storedUserDetails = JSON.parse(localStorage.getItem("userDetails"));
+        const storedUserDetails = JSON.parse(localStorage.getItem("userDetails")) || [];
 
-        if (storedUserDetails && storedUserDetails.username === username && storedUserDetails.password === password) {
+        const user = storedUserDetails.find(user => user.username === username && user.password === password);
+
+        if (user) {
             alert("Login successful!");
             login(); 
+            navigate('/'); 
         } else {
             alert("Invalid username or password.");
         }
@@ -47,6 +52,7 @@ const UserForm = () => {
                 </div>
                 <button type="submit" className="submit-button">Submit</button>
             </form>
+            <p>Don't have an account? <Link to="/signup">Sign up here</Link></p>
         </div>
     );
 };
