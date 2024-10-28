@@ -14,7 +14,7 @@ h1 {
 
 .list {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 20px; 
     list-style: none;
     padding: 0;
@@ -26,6 +26,11 @@ h1 {
     padding: 15px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     text-align: center;
+    transition: transform 0.2s;
+}
+
+.list-item:hover {
+    transform: scale(1.02);
 }
 
 .image {
@@ -93,6 +98,7 @@ input[type="checkbox"] {
     margin-right: 5px;
     transform: scale(1.2);
 }
+
 .list-item button {
     padding: 8px 12px;
     border: none;
@@ -105,5 +111,39 @@ input[type="checkbox"] {
 }
 
 .list-item button:hover {
-    background-color: #0056b3;
+    background-color: #004494;
+}
+
+@media (max-width: 768px) {
+    .list {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    }
+
+    .title {
+        font-size: 1.25rem;
+    }
+
+    .price {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .list {
+        grid-template-columns: 1fr;
+    }
+
+    button {
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+
+    .title {
+        font-size: 1.1rem;
+    }
+
+    .price {
+        font-size: 1rem;
+    }
 }

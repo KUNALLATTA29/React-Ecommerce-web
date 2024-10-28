@@ -1,12 +1,9 @@
-import Header from "./component/Header"
-import { Outlet } from 'react-router-dom'
-import Sidebar from "./component/Sidebar"
-import './App.css'
-
+import Header from "./component/Header";
+import { Outlet } from 'react-router-dom';
+import Sidebar from "./component/Sidebar";
+import './App.css';
 
 function App() {
-  
-
   return (
     <div className="app-container">
       <Header />
@@ -17,7 +14,7 @@ function App() {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

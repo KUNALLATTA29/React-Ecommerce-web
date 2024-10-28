@@ -1,24 +1,37 @@
 .sidebar {
-    width: 200px;
-    height: 100vh;
-    background-color: #f0f0f0;
-    padding: 20px;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-    margin: 1.5%;
+  width: 200px;
+  height: 100vh;
+  background-color: #f0f0f0;
+  padding: 20px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  margin: 1.5%;
+}
+
+.sidebar nav ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar nav ul li {
+  margin: 15px 0;
+}
+
+.sidebar nav ul li a {
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+      width: 100%;
+      height: auto;
+      position: relative;
+      box-shadow: none;
   }
-  
+
   .sidebar nav ul {
-    list-style: none;
-    padding: 0;
+      display: flex;
+      justify-content: space-around;
   }
-  
-  .sidebar nav ul li {
-    margin: 15px 0;
-  }
-  
-  .sidebar nav ul li a {
-    text-decoration: none;
-    color: #333;
-    font-weight: bold;
-  }
-  
+}

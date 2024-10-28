@@ -96,6 +96,7 @@ h1 {
 .buy-now-button:hover {
     background-color: #388e3c;
 }
+
 .quantity-controls {
     display: flex;
     align-items: center;
@@ -118,4 +119,31 @@ h1 {
 .quantity-controls span {
     margin: 0 10px;
     font-weight: bold;
+}
+
+
+@media (max-width: 600px) {
+    .cart-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .cart-item-image {
+        margin-bottom: 10px;
+    }
+
+    .cart-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .clear-cart-button, .buy-now-button {
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    .quantity-controls {
+        justify-content: center;
+        margin: 10px 0;
+    }
 }

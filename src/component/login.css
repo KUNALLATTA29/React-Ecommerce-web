@@ -54,3 +54,19 @@ input:focus {
 .submit-button:hover {
     background-color: #0056b3;
 }
+
+@media (max-width: 480px) {
+    .form-container {
+        width: 90%;
+        padding: 15px;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    input, .submit-button {
+        font-size: 14px;
+        padding: 8px;
+    }
+}

@@ -10,6 +10,7 @@
 
 .content {
     display: flex;
+    flex-wrap: wrap;
 }
 
 .large-image {
@@ -35,4 +36,29 @@
 .details .price,
 .details .rating {
     font-size: 1.25rem;
+}
+
+@media (max-width: 768px) {
+    .large-image {
+        width: 100%;
+    }
+
+    .content {
+        flex-direction: column;
+    }
+
+    .details {
+        margin-top: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .title {
+        font-size: 1.5rem;
+    }
+
+    .details .price,
+    .details .rating {
+        font-size: 1rem;
+    }
 }
