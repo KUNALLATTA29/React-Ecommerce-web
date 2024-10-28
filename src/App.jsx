@@ -1,7 +1,7 @@
 import Header from "./component/Header"
 import { Outlet } from 'react-router-dom'
 import Sidebar from "./component/Sidebar"
-import './app.css'
+import './App.css'
 
 
 function App() {
