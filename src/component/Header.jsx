@@ -14,14 +14,6 @@ export default function Header() {
                 >HOME</NavLink>
             </li>
             <li>
-                <NavLink to="/about"
-                style={({isActive}) => ({
-                    color:isActive ? '#007bff' :'black',
-                    textDecoration: isActive ? 'underline' : 'none'
-                })}
-                >ABOUT</NavLink>
-            </li>
-            <li>
                 <NavLink to="/contact"
                 style={({isActive}) => ({
                     color:isActive ? '#007bff' :'black',
@@ -30,20 +22,12 @@ export default function Header() {
                 >CONTACT</NavLink>
             </li>
             <li>
-                <NavLink to="/login"
-                style={({isActive}) => ({
-                    color:isActive ? '#007bff' :'black',
-                    textDecoration: isActive ? 'underline' : 'none'
-                })}
-                >LogIn</NavLink>
-            </li>
-            <li>
                 <NavLink to="/cart"
                 style={({isActive}) => ({
                     color:isActive ? '#007bff' :'black',
                     textDecoration: isActive ? 'underline' : 'none'
                 })}
-                >Cart</NavLink>
+                >CART</NavLink>
             </li>
         </ul>
     </nav>

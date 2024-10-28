@@ -18,16 +18,6 @@ export default function Sidebar() {
             </NavLink>
           </li>
           <li>
-            <NavLink to="/about" 
-              style={({isActive}) => ({
-                color:isActive ? '#007bff' :'black',
-                textDecoration: isActive ? 'underline' : 'none'
-            })}
-            >
-              About
-            </NavLink>
-          </li>
-          <li>
             <NavLink to="/contact"
               style={({isActive}) => ({
                 color:isActive ? '#007bff' :'black',
@@ -37,6 +27,14 @@ export default function Sidebar() {
               Contact
             </NavLink>
           </li>
+          <li>
+                <NavLink to="/cart"
+                style={({isActive}) => ({
+                    color:isActive ? '#007bff' :'black',
+                    textDecoration: isActive ? 'underline' : 'none'
+                })}
+                >CART</NavLink>
+            </li>
         </ul>
       </nav>
     </div>

@@ -4,11 +4,19 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Contact from './component/Contact.jsx'
 import Root from './Redux/Root.jsx'
 import Home from './component/Home.jsx'
-import About from './component/About.jsx'
 import Notfound from './component/Notfound.jsx'
 import ProductDetail from './component/ProductDetail.jsx'
 import LogIn from './component/LogIn.jsx'
 import Cart from './component/Cart.jsx'
+import { AuthProvider } from './component/AuthContext.jsx'
+import { Navigate } from 'react-router-dom'
+import { useAuth } from './component/AuthContext.jsx'
+
+const ProtectedRoute = ({ children }) => {
+  const { isLoggedIn } = useAuth();
+  
+  return isLoggedIn ? children : <Navigate to="/login" />;
+};
 
 const router = createBrowserRouter([
   {
@@ -20,16 +28,12 @@ const router = createBrowserRouter([
       element:<Home/>
     },
     {
-      path:"about",
-      element:<About/>
-    },
-    {
       path: 'product/:id',
-      element: <ProductDetail />,
+      element: <ProtectedRoute><ProductDetail /></ProtectedRoute>,
     },
     {
       path:"contact",
-      element:<Contact/>
+      element:<ProtectedRoute><Contact /></ProtectedRoute>
     },
     {
       path: '*',
@@ -41,7 +45,7 @@ const router = createBrowserRouter([
     },
     {
       path:'/cart',
-      element:<Cart/>
+      element:<ProtectedRoute><Cart /></ProtectedRoute>
     }
   ]
   }
@@ -49,6 +53,8 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
+    <AuthProvider>
     <RouterProvider router={router}/>
+    </AuthProvider>
   </StrictMode>,
 )

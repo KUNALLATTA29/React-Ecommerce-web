@@ -1,22 +1,26 @@
 import { useState } from "react";
 import './login.css';
+import { useAuth } from "./AuthContext";
 
 const UserForm = () => {
+    const {login} = useAuth()
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-    const [email, setEmail] = useState("");
-    const [phoneNumber, setPhoneNumber] = useState("");
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const userDetails = { username, password, email, phoneNumber };
-        localStorage.setItem("userDetails", JSON.stringify(userDetails));
-        console.log(userDetails);
-        alert("User details saved!");
+
+        const storedUserDetails = JSON.parse(localStorage.getItem("userDetails"));
+
+        if (storedUserDetails && storedUserDetails.username === username && storedUserDetails.password === password) {
+            alert("Login successful!");
+            login(); 
+        } else {
+            alert("Invalid username or password.");
+        }
+
         setUsername("");
         setPassword("");
-        setEmail("");
-        setPhoneNumber("");
     };
 
     return (
@@ -38,24 +42,6 @@ const UserForm = () => {
                         type="password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
-                        required
-                    />
-                </div>
-                <div className="form-group">
-                    <label>Email:</label>
-                    <input
-                        type="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        required
-                    />
-                </div>
-                <div className="form-group">
-                    <label>Phone Number:</label>
-                    <input
-                        type="tel"
-                        value={phoneNumber}
-                        onChange={(e) => setPhoneNumber(e.target.value)}
                         required
                     />
                 </div>
