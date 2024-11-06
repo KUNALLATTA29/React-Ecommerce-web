@@ -68,7 +68,7 @@ export default function Data() {
         <div className="rating-dropdown">
                 <label htmlFor="rating">Select Rating: </label>
                 <select id="rating" value={rating} onChange={handleRating}>
-                    <option value={0}>All Ratings</option>  {/* Option to show all ratings */}
+                    <option value={0}>All Ratings</option>
                     <option value={1}>1 Star</option>
                     <option value={2}>2 Stars</option>
                     <option value={3}>3 Stars</option>
