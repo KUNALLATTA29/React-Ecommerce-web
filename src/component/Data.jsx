@@ -1,7 +1,7 @@
 
 import { useState, useEffect } from "react"
 import axios from 'axios'
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../Redux/cartSlice";
 import './data.css'
 import { LazyLoadImage } from 'react-lazy-load-image-component';
@@ -12,8 +12,9 @@ export default function Data() {
     const [products, setproducts] = useState([]);
     const [search, setsearch] = useState('');
     const [sortdata, setsortdata] = useState('')
-    const [rating,setrating] = useState([]);
+    const [rating,setrating] = useState(0);
     const dispatch = useDispatch();
+    const cart = useSelector(state => state.cart);
 
     const fetch = async()=>{
         let response = await axios.get('https://dummyjson.com/products')
@@ -25,7 +26,7 @@ export default function Data() {
             .filter((elem) => 
                 elem.title.toLowerCase().includes(search.toLowerCase())
             )
-            .filter((elem)=> rating.length === 0 || rating.includes(Math.round(elem.rating)))
+            .filter((elem)=> rating === 0 || Math.round(elem.rating)=== rating)
             .sort(sortproducts);
     };
 
@@ -39,10 +40,14 @@ export default function Data() {
     }
 
 
-    const handleRating = (rat) => {
-        setrating((prev) => 
-            prev.includes(rat) ? prev.filter((r) => r !== rat) : [...prev, rat]
-        );
+    const handleRating = (e) => {
+        setrating(Number(e.target.value))
+    };
+
+    const handleAddToCart = (product) => {
+        dispatch(addToCart(product));
+        const cartCount = cart.reduce((total, item) => total + item.quantity, 0);
+        alert(`Product has been added to the cart! `);
     };
 
     useEffect(()=>{
@@ -60,17 +65,16 @@ export default function Data() {
             <button onClick={()=>setsortdata("ace")}>low to high</button>
             <button onClick={()=>setsortdata("dec")}>high to low</button>
         </div>
-        <div className="rating-filters">
-                {[1, 2, 3, 4, 5].map((rat) => (
-                    <label key={rat}>
-                        <input
-                            type="checkbox"
-                            checked={rating.includes(rat)}
-                            onChange={() => handleRating(rat)}
-                        />
-                        {rat} Star
-                    </label>
-                ))}
+        <div className="rating-dropdown">
+                <label htmlFor="rating">Select Rating: </label>
+                <select id="rating" value={rating} onChange={handleRating}>
+                    <option value={0}>All Ratings</option>  {/* Option to show all ratings */}
+                    <option value={1}>1 Star</option>
+                    <option value={2}>2 Stars</option>
+                    <option value={3}>3 Stars</option>
+                    <option value={4}>4 Stars</option>
+                    <option value={5}>5 Stars</option>
+                </select>
         </div>
             <ul className="list">
                 {filterData().map(product => (
@@ -87,7 +91,7 @@ export default function Data() {
                         <Link to={`/product/${product.id}`}>
                             <button>Show Detail</button>
                         </Link>
-                        <button onClick={() => dispatch(addToCart(product))}>Add to Cart</button>
+                        <button onClick={() => handleAddToCart(product)}>Add to Cart</button>
                     </li>
                 ))}
             </ul>

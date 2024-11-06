@@ -53,6 +53,14 @@ export default function Contact() {
         </div>
         <button type="submit" className="submit-button">Submit</button>
       </form>
+      <div className="social-links">
+        <h2>Connect with Me</h2>
+        <ul>
+          <li><a href="https://github.com/KUNALLATTA29" target="_blank" rel="noopener noreferrer" className="social-icon github">GitHub</a></li>
+          <li><a href="https://www.linkedin.com/in/kunal-latta-842321227" target="_blank" rel="noopener noreferrer" className="social-icon linkedin">LinkedIn</a></li>
+          <li><a href="mailto:kunalofficial234@gmail.com" className="social-icon email">Email</a></li>
+        </ul>
+      </div>
     </div>
   )
 }

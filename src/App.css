@@ -23,16 +23,14 @@
 
 @media (max-width: 768px) {
   .sidebar {
-      width: 100%;
-      height: auto;
-      box-shadow: none;
+    display: none;
   }
 
   .main-content {
-      flex-direction: column;
+    flex-direction: column;
   }
 
   .content-area {
-      padding: 10px;
+    padding: 10px;
   }
 }

@@ -1,14 +1,20 @@
-import React from 'react';
+import React,{useState,useEffect} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { removeFromCart, clearCart, increaseQuantity, decreaseQuantity } from '../Redux/cartSlice';
 import './cart.css'; 
+import CheckoutForm from './CheckoutForm';
 
 const Cart = () => {
     const cart = useSelector(state => state.cart);
     const dispatch = useDispatch();
+    const [showCheckout, setShowCheckout] = useState(false);
 
     const handleBuyNow = () => {
-        alert('Thank you for your purchase!');
+        setShowCheckout(true);
+    };
+
+    const handleCloseCheckout = () => {
+        setShowCheckout(false);
     };
 
     return (
@@ -43,6 +49,7 @@ const Cart = () => {
                     </div>
                 </div>
             )}
+            {showCheckout && <CheckoutForm onClose={handleCloseCheckout} />}
         </div>
     );
 };
